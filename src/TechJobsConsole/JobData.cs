@@ -138,5 +138,41 @@ namespace TechJobsConsole
 
             return rowValues.ToArray();
         }
+
+
+        // TODO Will search for a string within all of the collumns.
+        public static List<Dictionary<string, string>> FindbyValue(string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            Dictionary<string, string> content = new Dictionary<string, string>();
+            string singlevalue;
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> collumnvalue in row)
+                {
+                    singlevalue = collumnvalue.Value.ToLower();
+                    if (singlevalue.Contains(value.ToLower()))
+                    {
+                        if (!jobs.Contains(row))
+                        {
+                            jobs.Add(row);
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+            return jobs;
+        }
     }
 }
+      
+}
+
+        
